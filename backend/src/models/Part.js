@@ -7,15 +7,34 @@ const schema = new mongoose.Schema(
       required: true,
       unique: true
     },
-    date: { 
-      type: Number,
-      required: true 
+    partName: {
+      type: String,
+      required: true,
+      unique: true
     },
-    price: { 
-      type: Number, 
-      required: true
-    }
+    priceLog: [
+      {
+        date: {
+          type: Number,
+          required: true
+        },
+        priceByBrand: [
+          {
+            brand: {
+              type: String,
+              required: true
+            },
+            price: {
+              type: Number,
+              required: true
+            }
+          }
+        ]
+      }
+    ]
   }
 );
 
 export default mongoose.model('Part', schema);
+
+
