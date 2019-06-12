@@ -1,0 +1,80 @@
+.btn {
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  background: rgb(199, 23, 23);
+  color: white;
+  border: none;
+  
+  &:hover {
+    background: rgb(228, 49, 49);
+  }
+}
+
+.backdropStyle {
+  top: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.3);
+  padding: 80px;
+}
+
+.modalStyleLogIn {
+  background: #005842;
+  border: 5px;
+  max-width: 300px;
+  min-height: 100px;
+  margin:  0px auto;
+  padding: 0px;
+};
+
+.modalStyleSignUp {
+  background: #004131;
+  border: 5px;
+  max-width: 300px;
+  min-height: 100px;
+  margin: 0px auto;
+  padding: 0px;
+};
+
+.buttonSwitch {
+  padding-bottom: 10px;
+};
+
+
+
+.LogInButton {
+color: #FEFEFE;
+padding: 12px;
+background-color: #005842;
+border: 0px solid #030504;
+width: 50%;
+}
+
+.LogInButtonUnactive{
+color: #57826B;
+padding: 12px;
+background-color: #005842;
+border: 0px solid #030504;
+width: 50%;
+}
+
+.SignUpButton {
+color: #FEFEFE;
+padding: 12px;
+background-color: #004131;
+border: 0px solid #030504;    
+width: 50%;
+}
+
+.SignUpButtonUnactive {
+color: #57826B;
+padding: 12px;
+background-color: #004131;
+border: 0px solid #030504;    
+width: 50%;
+}

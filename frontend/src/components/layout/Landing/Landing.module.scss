@@ -1,0 +1,29 @@
+.page {
+  background-color: #BFBFBF;
+  height: 100vh;
+  width: 100%;
+}
+
+.content{
+  position: relative;
+  top: 30%;
+  left: 25%;
+  width: 600px;
+}
+
+.headerTitle{
+  color: #ffffff;
+  font-family:"Oswald-Regular";
+  font-size:70px;
+}
+
+.buttonContainer{
+  display: flex;
+  justify-content: flex-end;
+  width: 89%;
+}
+
+/* .button{
+  align-items: right;
+} */
+
