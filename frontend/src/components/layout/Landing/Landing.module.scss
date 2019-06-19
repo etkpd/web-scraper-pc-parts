@@ -8,7 +8,11 @@
   position: relative;
   top: 30%;
   left: 25%;
-  width: 600px;
+  width: 570px;
+  @media screen and (max-width: 777px){
+    left: 0%;
+    margin: 0px auto;
+  }
 }
 
 .headerTitle{
@@ -20,7 +24,8 @@
 .buttonContainer{
   display: flex;
   justify-content: flex-end;
-  width: 89%;
+  width: 85%;
+ 
 }
 
 /* .button{

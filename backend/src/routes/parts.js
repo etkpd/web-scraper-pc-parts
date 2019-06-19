@@ -1,6 +1,6 @@
-import express from "express";
-import Part from "../models/Part";
-import parseErrors from "../utils/parseErrors";
+const express = require('express');
+const Part = require('../models/Part');
+const parseErrors = require('../utils/parseErrors')
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ const router = express.Router();
 // @desc     Append recent price log to part 
 // @access   Private
 router.post('/pricelog/:date', 
-  async (req, res) => {
+   (req, res) => {
   /*    const { webpage, partName, priceLog } = req.body;
      const { date, priceByBrand } = priceLog;
     res.json(priceByBrand[2]);   */
@@ -36,7 +36,7 @@ router.post('/pricelog/:date',
      //New New New
      const { webpage, partName, priceLog : {date , priceByBrand } } = req.body;
 
-    const part = await Part.findById("5cf91032798dab252485322f");
+    const part = Part.findById("5cf91032798dab252485322f");
 
     const newPriceLog = {
       date, priceByBrand
@@ -44,7 +44,7 @@ router.post('/pricelog/:date',
 
     part.priceLog.unshift(newPriceLog);
 
-    await part.save();
+    part.save();
 
     res.json(part.priceLog);  
 
@@ -84,4 +84,4 @@ router.post("/", (req, res) => {
 
 
 
-export default router;
+module.exports = router;

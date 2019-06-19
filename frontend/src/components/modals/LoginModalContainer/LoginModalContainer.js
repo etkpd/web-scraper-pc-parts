@@ -1,6 +1,5 @@
 import React from "react";
 import LoginModal from "../LoginModal/LoginModal"
-import Button from '../../buttons/Button'
 
 class LoginModalContainer extends React.Component {
   state = {
@@ -15,12 +14,14 @@ class LoginModalContainer extends React.Component {
   }
 
   render() {
+    const { children } = this.props;
+
     return (
       <div>
-      
-        <Button 
-          onClick={this.showModal}
-        />
+        
+        <div onClick={this.showModal}>
+          {children}
+        </div>
 
         <LoginModal onClose={this.showModal} show={this.state.show}>
         </LoginModal>

@@ -13,6 +13,13 @@ const schema = new mongoose.Schema(
       index: true,
       unique: true
     },
+    username: {
+      type: String,
+      required: true,
+      lowercase: true,
+      index: true,
+      unique: true
+    },
     passwordHash: { 
       type: String, 
     },
@@ -86,5 +93,5 @@ schema.methods.toAuthJSON = function toAuthJSON() {
 
 schema.plugin(uniqueValidator, { message: "This email is already taken" });
 
+module.exports = mongoose.model('Users', schema)
 
-export default mongoose.model("User", schema);

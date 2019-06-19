@@ -1,11 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from "dotenv";
-import mongoose from "mongoose";
-import { getPriceValue } from './lib/scraper';
+const express = require('express');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const { getPriceValue } = require('./lib/scraper');
 
-import users from './routes/users';
-import parts from './routes/parts';
+
+const auth = require('./routes/auth');
+const parts = require('./routes/parts');
+const users = require('./routes/users');
 
 dotenv.config();
 
@@ -18,8 +20,9 @@ mongoose.connect(process.env.MONGODB_URL);
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/users', users);
+app.use('/api/auth', auth);
 app.use('/api/parts', parts);
+app.use('/api/users', users);
 
 app.get(`/scrape`, async (req, res, next) => {
   console.log(`Scraping!!`);

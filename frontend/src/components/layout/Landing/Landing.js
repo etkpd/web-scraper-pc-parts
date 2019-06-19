@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginModalContainer from '../../modals/LoginModalContainer/LoginModalContainer'
 import landingStyles from './Landing.module.scss'
+import Button from '../../buttons/Button';
 
 const Landing = () => {
   return (
@@ -9,7 +10,11 @@ const Landing = () => {
           <h1 className={landingStyles.headerTitle}>PC Parts Price Tracker</h1>
           <div className={landingStyles.buttonContainer}>
 
-            <LoginModalContainer/>
+            <LoginModalContainer>
+              <Button
+                label='Login'
+              />
+            </LoginModalContainer>
           </div>
         </div>
     </section>

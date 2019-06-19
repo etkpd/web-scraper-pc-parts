@@ -1,13 +1,13 @@
-import express from "express";
-import User from "../models/User";
-import parseErrors from "../utils/parseErrors";
-import { sendConfirmationEmail } from "../mailer";
+const express = require('express');
+const User = require('../models/User');
+const parseErrors = require('../utils/parseErrors');
+const { sendConfirmationEmail } = require('../mailer');
 
 const router = express.Router();
 
 router.post("/", (req, res) => {
-  const { email, password } = req.body.user;
-  const user = new User({ email });
+  const { email, username, password } = req.body.user;
+  const user = new User({ email, username });
   user.setPassword(password);
   user.setConfirmationToken();
   user
@@ -20,4 +20,4 @@ router.post("/", (req, res) => {
 
 });
 
-export default router;
+module.exports = router;

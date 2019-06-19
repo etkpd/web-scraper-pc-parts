@@ -1,16 +1,21 @@
 .btn {
-  width: 200px;
-  height: 50px;
+  width: 196px;
+  height: 40px;
   font-size: 20px;
   border-radius: 5px;
-  margin-top: 20px;
-  background: rgb(199, 23, 23);
+  margin: 0px 0px 0px 0px;
+  background:#000000;
   color: white;
   border: none;
   
   &:hover {
-    background: rgb(228, 49, 49);
+    background: #000000;
   }
+  
+}
+
+.modalHeader{
+ padding: 0px 0px 18px 0px; 
 }
 
 .backdropStyle {
@@ -19,62 +24,37 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.4);
   padding: 80px;
 }
 
 .modalStyleLogIn {
-  background: #005842;
+  position: relative;
+  background: #ffffff;
+  font-family:"Roboto-Medium";
+  font-size: 20px;
   border: 5px;
   max-width: 300px;
-  min-height: 100px;
+  top: 27%;
+  min-height: 245px;
   margin:  0px auto;
   padding: 0px;
+  align-items: center;
+  display: flex;
 };
 
-.modalStyleSignUp {
-  background: #004131;
-  border: 5px;
-  max-width: 300px;
-  min-height: 100px;
-  margin: 0px auto;
-  padding: 0px;
-};
-
-.buttonSwitch {
-  padding-bottom: 10px;
-};
-
-
-
-.LogInButton {
-color: #FEFEFE;
-padding: 12px;
-background-color: #005842;
-border: 0px solid #030504;
-width: 50%;
+.interface {
+  padding: 0px 0px;
+  margin: auto;
 }
 
-.LogInButtonUnactive{
-color: #57826B;
-padding: 12px;
-background-color: #005842;
-border: 0px solid #030504;
-width: 50%;
-}
 
-.SignUpButton {
-color: #FEFEFE;
-padding: 12px;
-background-color: #004131;
-border: 0px solid #030504;    
-width: 50%;
-}
-
-.SignUpButtonUnactive {
-color: #57826B;
-padding: 12px;
-background-color: #004131;
-border: 0px solid #030504;    
-width: 50%;
+.inputLoginModal{
+  font-family:"Roboto-Medium";
+  font-size:18px;
+  border: 1px black solid;
+  width: 180px;
+  height: 34px;
+  padding: 0px 0px 0px 5px;
+  margin: 0px 0px 8px 0px;
 }
