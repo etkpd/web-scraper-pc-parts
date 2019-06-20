@@ -9,7 +9,6 @@ const Landing = () => {
         <div className={landingStyles.content}>
           <h1 className={landingStyles.headerTitle}>PC Parts Price Tracker</h1>
           <div className={landingStyles.buttonContainer}>
-
             <LoginModalContainer>
               <Button
                 label='Login'

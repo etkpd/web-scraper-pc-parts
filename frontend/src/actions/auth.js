@@ -1,6 +1,6 @@
 import { 
   USER_LOADED,
-  //eslint-disable-next-line
+  LOGIN_LOADING,
   LOGIN_SUCCESS,
   LOGIN_FAIL
 } from "./types";
@@ -27,7 +27,13 @@ export const loadUser = () => async dispatch => {
 
 // Login User
 export const login = (username, password) => async dispatch => {
-   try {
+ 
+  
+    try {
+    dispatch({
+      type: LOGIN_LOADING
+    });
+
     const res = await api.user.login({username, password})
 
     dispatch({
@@ -38,7 +44,7 @@ export const login = (username, password) => async dispatch => {
     dispatch(loadUser());
   } catch (err) {
     //const errors = err.response.data.errors;
-    console.log(err)
+    console.log("login error")
 
     dispatch({
       type: LOGIN_FAIL

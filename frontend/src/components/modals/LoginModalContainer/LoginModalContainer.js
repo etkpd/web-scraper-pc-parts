@@ -1,9 +1,11 @@
 import React from "react";
 import LoginModal from "../LoginModal/LoginModal"
+import { connect } from 'react-redux';
 
 class LoginModalContainer extends React.Component {
   state = {
-    show: false
+    show: false,
+    loading: false
   }
 
   showModal = () => {
@@ -23,14 +25,24 @@ class LoginModalContainer extends React.Component {
           {children}
         </div>
 
-        <LoginModal onClose={this.showModal} show={this.state.show}>
-        </LoginModal>
-
+        <LoginModal 
+          onClose={this.showModal} 
+          show={this.state.show}
+          loading={this.props.loading}
+        />
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  loading: state.auth.loading
+});
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    
+  }
+}
 
-export default LoginModalContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModalContainer);

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { login } from '../../../actions/auth';
 
-
+import loadingGif from '../../../assets/giphy.gif';
 
 class LoginModal extends React.Component {  
   state = {
@@ -73,32 +73,37 @@ class LoginModal extends React.Component {
           ref={node => this.node = node}
         >
           <div className={styles.interface}>
-            <div className={styles.modalHeader}>
-              Sign Into Your Account          
-            </div>
-            <form
+            {!this.props.loading ?
+              <>
+              <div className={styles.modalHeader}>
+                Sign Into Your Account          
+              </div>
+              <form
                onSubmit={this.onSubmit}
-            >
-              <Input 
-                className={styles.inputLoginModal}
-                id="username" 
-                type="text"
-                name="username"
-                placeholder="username" 
-                value={data.username}
-                onChange={this.onChange} 
-                />
-              <Input 
-                className={styles.inputLoginModal}
-                id="password" 
-                type="password" 
-                name="password"
-                placeholder="password" 
-                value={data.password}
-                onChange={this.onChange} 
-                />
-              <button type="submit" className={styles.btn}>Login</button>
-             </form>
+              >
+                <Input 
+                  className={styles.inputLoginModal}
+                  id="username" 
+                  type="text"
+                  name="username"
+                  placeholder="username" 
+                  value={data.username}
+                  onChange={this.onChange} 
+                  />
+                <Input 
+                  className={styles.inputLoginModal}
+                  id="password" 
+                  type="password" 
+                  name="password"
+                  placeholder="password" 
+                  value={data.password}
+                  onChange={this.onChange} 
+                  />
+                <button type="submit" className={styles.btn}>Login</button>
+              </form>
+              </>
+              :<img src={loadingGif} alt='loading....' height="70" width="70"></img>
+            }
           </div>
         </div>
       </div>
