@@ -15,7 +15,7 @@ const port = process.env.PORT || 2093;
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URL);
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true , useCreateIndex: true });
 
 app.use(cors());
 app.use(express.json());

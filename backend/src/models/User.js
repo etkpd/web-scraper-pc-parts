@@ -66,10 +66,12 @@ schema.methods.generateResetPasswordLink = function generateResetPasswordLink() 
 schema.methods.generateJWT = function generateJWT() {
   return jwt.sign(
     {
-      email: this.email,
-      confirmed: this.confirmed
+      user: {
+        id: this._id
+      }
     },
-    process.env.JWT_SECRET
+    process.env.JWT_SECRET,
+    { expiresIn: 360000 }
   );
 };
 
@@ -85,12 +87,25 @@ schema.methods.generateResetPasswordToken = function generateResetPasswordToken(
 
 schema.methods.toAuthJSON = function toAuthJSON() {
   return {
-    email: this.email,
+    username: this.username,
     confirmed: this.confirmed,
+    payload: { 
+      user: {
+        id: this._id
+      }
+    },
     token: this.generateJWT()
   };
 };
 
+schema.methods.userDetails = function userDetails() {
+  return {
+    confirmed: this.confirmed,
+    partsssList: this.partsList,
+    emailooh: this.email,
+    username: this.username
+  };
+};
 schema.plugin(uniqueValidator, { message: "This email is already taken" });
 
 module.exports = mongoose.model('Users', schema)

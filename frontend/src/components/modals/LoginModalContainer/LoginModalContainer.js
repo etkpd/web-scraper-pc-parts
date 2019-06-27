@@ -1,5 +1,5 @@
 import React from "react";
-import LoginModal from "../LoginModal/LoginModal"
+import LoginModal from "./LoginModal/LoginModal"
 import { connect } from 'react-redux';
 
 class LoginModalContainer extends React.Component {
@@ -24,7 +24,6 @@ class LoginModalContainer extends React.Component {
         <div onClick={this.showModal}>
           {children}
         </div>
-
         <LoginModal 
           onClose={this.showModal} 
           show={this.state.show}

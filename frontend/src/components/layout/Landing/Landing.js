@@ -1,9 +1,15 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import LoginModalContainer from '../../modals/LoginModalContainer/LoginModalContainer'
 import landingStyles from './Landing.module.scss'
 import Button from '../../buttons/Button';
 
-const Landing = () => {
+const Landing = ({isAuthenticated}) => {
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
+
   return (
     <section className={landingStyles.page}>
         <div className={landingStyles.content}>
@@ -20,4 +26,8 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Landing);

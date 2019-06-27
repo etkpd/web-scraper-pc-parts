@@ -4,6 +4,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL
 } from "./types";
+import { setAlert } from './alert';
 import api from "../api";
 import setAuthToken from '../utils/setAuthToken';
 
@@ -21,7 +22,7 @@ export const loadUser = () => async dispatch => {
       payload: res.data
     });
   } catch (err) {
-   
+    console.log("")
   }
 };
 
@@ -43,9 +44,11 @@ export const login = (username, password) => async dispatch => {
 
     dispatch(loadUser());
   } catch (err) {
-    //const errors = err.response.data.errors;
-    console.log("login error")
+    const errors = err.response.data.errors;
 
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
     dispatch({
       type: LOGIN_FAIL
     });

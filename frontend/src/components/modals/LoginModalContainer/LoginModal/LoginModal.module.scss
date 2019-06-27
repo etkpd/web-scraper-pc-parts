@@ -15,7 +15,7 @@
 }
 
 .modalHeader{
- padding: 0px 0px 18px 0px; 
+ padding: 0px 0px 14px 0px; 
 }
 
 .backdropStyle {
@@ -47,6 +47,11 @@
   padding: 0px 0px;
   margin: auto;
 
+  form {
+    margin: auto;
+    padding: 0px 0px 0px 1px;
+    max-width: 195px;
+  }
   img {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
@@ -61,6 +66,33 @@
   width: 180px;
   height: 34px;
   padding: 0px 0px 0px 5px;
-  margin: 0px 0px 8px 0px;
+  margin: 0px 0px 8px 8px;
 }
 
+.inputLoginModalErrors{
+  font-family:"Roboto-Medium";
+  font-size:18px;
+  border: 2px red solid;
+  width: 180px;
+  height: 34px;
+  padding: 0px 0px 0px 5px;
+  margin: 0px 0px 8px 8px;
+}
+
+.enter{
+  opacity: 0;
+}
+
+.enterActive{
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.exit{
+  opacity: 1;
+}
+
+.exitActive{
+  opacity: 0;
+  transition: opacity 1000ms ease-in;
+}

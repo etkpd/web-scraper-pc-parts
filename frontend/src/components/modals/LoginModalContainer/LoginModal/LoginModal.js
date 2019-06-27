@@ -1,35 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CSSTransition } from 'react-transition-group';
 import Input from './ModalInput/Input'
 import styles from './LoginModal.module.scss';
 import { connect } from 'react-redux'; 
 
-import { login } from '../../../actions/auth';
+//import PopupAlert from '../../../alerts/popupalert/PopupAlert';
 
-import loadingGif from '../../../assets/giphy.gif';
+import { login } from '../../../../actions/auth';
+
+import loadingGif from '../../../../assets/giphy.gif';
+import PopupAlert from '../../../alerts/popupalert/PopupAlert';
 
 class LoginModal extends React.Component {  
   state = {
     data: {
       username: "",
       password: ""
-    }
+    },
+    errorState: false,
+    errorFlag: false
   };
   
   onSubmit = e =>{
     e.preventDefault();
     this.props.login(this.state.data.username, this.state.data.password);
-
+    this.setState({errorFlag: false})
   }
 
   onChange = e =>{
    this.setState({
-      data: { ...this.state.data, [e.target.name]: e.target.value }
+      data: { ...this.state.data, [e.target.name]: e.target.value },
+      errorState: false
     });
+  }
+
+  onClick = () => {
+    this.setState({
+      errorState: false
+    })
   }
 
   onClose = (e) => {
     this.props.onClose();
+    this.setState({data:{username: "", password: ""}, errorState: false})
   }
 
   onKeyUp = (e) => {
@@ -43,11 +57,17 @@ class LoginModal extends React.Component {
       if (this.node.contains(e.target)){
         return;
       }
-      this.onClose();
-    
-    }
-    
+      this.onClose(); 
+    } 
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.errors.length>0 && !this.state.errorFlag){
+      this.setState({ errorState: true, errorFlag: true })
+    }
+    console.log('will receive props')
+    console.log(this.state.errorFlag)
+  } 
 
   componentDidMount() {
     document.addEventListener('keyup', this.onKeyUp);
@@ -82,7 +102,7 @@ class LoginModal extends React.Component {
                onSubmit={this.onSubmit}
               >
                 <Input 
-                  className={styles.inputLoginModal}
+                  className={this.state.errorState ? styles.inputLoginModalErrors : styles.inputLoginModal}
                   id="username" 
                   type="text"
                   name="username"
@@ -91,7 +111,7 @@ class LoginModal extends React.Component {
                   onChange={this.onChange} 
                   />
                 <Input 
-                  className={styles.inputLoginModal}
+                  className={this.state.errorState ? styles.inputLoginModalErrors :  styles.inputLoginModal }     
                   id="password" 
                   type="password" 
                   name="password"
@@ -105,6 +125,22 @@ class LoginModal extends React.Component {
               :<img src={loadingGif} alt='loading....' height="70" width="70"></img>
             }
           </div>
+          <>
+            {/* 
+             {this.props.errors.length > 0 && <PopupAlert/>}   
+           */}
+          
+          <CSSTransition
+              in={this.state.errorState}
+              timeout={1000}
+              classNames={{...styles}}
+              unmountOnExit
+            >
+            <PopupAlert 
+              onClick={this.onClick}
+            />
+          </CSSTransition>
+          </>
         </div>
       </div>
     );
@@ -114,7 +150,8 @@ class LoginModal extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  errors: state.alert
 });
 
 LoginModal.propTypes = {

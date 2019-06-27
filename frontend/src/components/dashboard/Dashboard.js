@@ -1,15 +1,13 @@
 import React from 'react';
+import dashboardStyles from './Dashboard.module.scss'
 
-const Landing = () => {
+const Dashboard = () => {
   return (
-    <section>
-      <div>
-        <div>
-          <h1>Dashboard</h1>
-        </div>
-      </div>
-    </section>
+    <div className={dashboardStyles.page}>
+      <h1 className={dashboardStyles.headerTitle}>Dashboard</h1>
+    </div>
+     
   );
 };
 
-export default Landing;
+export default Dashboard;

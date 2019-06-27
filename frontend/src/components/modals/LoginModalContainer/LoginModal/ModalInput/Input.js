@@ -2,7 +2,7 @@ import React from 'react';
 
 const Input = ({name, type, placeholder, className, value, onChange}) => {
   return (
-    <div className="Input">
+    
         <input 
           id={name} 
           name={name}
@@ -12,7 +12,6 @@ const Input = ({name, type, placeholder, className, value, onChange}) => {
           autoComplete="false" 
           required type={type} 
           placeholder={placeholder} />	
-		</div>
   );
 };
 
