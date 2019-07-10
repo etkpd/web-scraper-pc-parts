@@ -1,6 +1,4 @@
 import React from 'react';
-//eslint-disable-next-line
-import Chart from '../chart/Chart'
 import dashboardStyles from './Dashboard.module.scss';
 import ProductGraph from '../product/ProductGraph/ProductGraph';
 
@@ -46,9 +44,8 @@ const datA=[
   { a: new Date(2019, 5, 14), b:  467},
   { a: new Date(2019, 5, 21), b:  500},
   { a: new Date(2019, 5, 28), b:  444},
-  { a: new Date(2019, 6, 8), b:  444}
+  { a: new Date(2019, 6, 9), b:  444}
 ]
-//eslint-disable-next-line
 const datB=[
   { a: new Date(2019, 1, 7), b: 265 },
   { a: new Date(2019, 1, 14), b: 344 },
@@ -70,9 +67,8 @@ const datB=[
   { a: new Date(2019, 5, 14), b: 262 },
   { a: new Date(2019, 5, 21), b: 335 },
   { a: new Date(2019, 5, 28), b: 343 },
-  { a: new Date(2019, 6, 8), b: 343 }
+  { a: new Date(2019, 6, 9), b: 343 }
 ]
-//eslint-disable-next-line
 const datC=[
   { a: new Date(2018, 8, 7), b: 265 },
   { a: new Date(2018, 8, 14), b: 276 },
@@ -122,7 +118,7 @@ const datC=[
 const Dashboard = () => {
   return (
     <div className={dashboardStyles.page}>
-      <h1 className={dashboardStyles.headerTitle}>Dashboard</h1>
+      <h1 className={dashboardStyles.headerTitle}>PC Parts Price Logs</h1>
       <div className={dashboardStyles.chart}>
         <ProductGraph
           productName={"Gigabyte - GA-B250M-DS3H Micro ATX LGA1151 Motherboard"}
@@ -130,7 +126,11 @@ const Dashboard = () => {
         />
         <ProductGraph
           productName={"Corsair - CXM (2015) 450 W 80+ Bronze Certified Semi-modular ATX Power Supply"}
-          data={datA}
+          data={datB}
+        />  
+        <ProductGraph
+          productName={"G.Skill - NT Series 8 GB (2 x 4 GB) DDR4-2133 Memory"}
+          data={datC}
         />  
       </div>
     </div>

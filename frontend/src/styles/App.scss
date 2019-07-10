@@ -26,6 +26,20 @@
   src: local("Roboto Medium"), local("Roboto-Medium"), url(./fonts/Roboto-Medium.ttf) format("truetype");
 }
 
+@font-face {
+  font-family: "Poppins-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Poppins Regular"), local("Poppins-Regular"), url(./fonts/Poppins-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins-Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Poppins Medium"), local("Poppins-Medium"), url(./fonts/Poppins-Medium.ttf) format("truetype");
+}
+
 /* Reset provided by https://github.com/gatsbyjs/gatsby-starter-blog via MIT license */
 
 html {

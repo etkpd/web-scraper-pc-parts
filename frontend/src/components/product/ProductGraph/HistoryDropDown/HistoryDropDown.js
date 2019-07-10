@@ -1,9 +1,17 @@
 import React from 'react';
+import dropdownStyles from './HistoryDropDown.module.scss';
 
 const HistoryDropDown = ({ currentValue, values, onChange }) => (
-  <select onChange={onChange} value={currentValue} style={{ width: 95 }}>
-    {values.map((value) => <option value={value} key={value}>{value}</option>)}
-  </select>
+  <div className={dropdownStyles.main}>
+    <h5 className={dropdownStyles.selectLabel}>History:</h5>
+    <select 
+      onChange={onChange} 
+      value={currentValue} 
+      className={dropdownStyles.select}
+      >
+      {values.map((value) => <option value={value} key={value} className={dropdownStyles.option}>{value}</option>)}
+    </select>
+  </div>
 );
 
 

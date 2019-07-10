@@ -4,23 +4,25 @@
   import HistoryDropDown from './HistoryDropDown/HistoryDropDown';
   import RemoveButton from './RemoveButton/RemoveButton';
 
+  import graphStyles from './ProductGraph.module.scss';
+
 
   const timeSpanKeys = [
     "15 days",
     "30 days",
     "45 days",
-    "2 month",
-    "3 month",
-    "Full"
+    "2 months",
+    "3 months",
+    "Maximum"
   ];
 
   const timeSpanDictionary ={
     "15 days":15,
     "30 days":30,
     "45 days":45,
-    "2 month":60,
-    "3 month":90,
-    "Full":200
+    "2 months":60,
+    "3 months":90,
+    "Maximum":200
   }
   
 
@@ -28,7 +30,7 @@
     constructor() {
       super();
       this.state = {
-        zoomDomain: { x: [new Date(2019, 4, 30), new Date(2019, 6, 8)] },
+        zoomDomain: { x: [new Date(2019, 4, 30), new Date(2019, 6, 9)] },
         timeSpan: "30 days"
       };
     } 
@@ -55,7 +57,7 @@
   
     render() {
       return (
-        <div>
+        <div className={graphStyles.productGraph}>
           <Header
             productName={this.props.productName}
           />
@@ -63,12 +65,12 @@
             currentValue={this.state.timeSpan}
             values={timeSpanKeys}
             onChange={this.changeZoomDomain.bind(this)}
-          />
+            />
           <RemoveButton/>
           <Chart
+            className={graphStyles.previewArea}
             data={this.props.data} 
             zoomDomain={this.state.zoomDomain}
-            onZoomDomainChange={this.handleZoom.bind(this)}
           />
         </div>
       );

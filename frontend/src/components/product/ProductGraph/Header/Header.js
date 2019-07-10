@@ -1,9 +1,10 @@
 import React from 'react';
+import headerStyles from './Header.module.scss';
 
 const Header = ({productName}) => {
   return (
     <div>
-      <h4>{productName}</h4>
+      <h5 className={headerStyles.header}>{productName}</h5>
     </div>
   );
 };

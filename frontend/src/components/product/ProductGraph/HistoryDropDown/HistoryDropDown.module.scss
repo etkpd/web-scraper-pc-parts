@@ -1,0 +1,61 @@
+.main{
+  display:flex;
+}
+
+.selectLabel{
+  margin: 0px;
+  font-family: "Poppins-Regular"; 
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 25px;
+  color: #6A707E;
+}
+
+select {
+  background-color: white;
+  border: thin solid blue;
+  border-radius: 0px;
+  display: inline-block;
+  font: inherit;
+  line-height: 1.5em;
+  padding: 0px 0px 0px 5px;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+
+select.select{
+  font-family: "Poppins-Regular";
+  font-size: 14px;
+  border: none;
+  color: #109CF1;
+  width: 82px;
+  background-image: 
+    linear-gradient(45deg, transparent 50%, #AEAEAE 50%), 
+    linear-gradient(135deg, #AEAEAE 50%, transparent 50%);
+  background-position: 
+    calc(100% - 4px) calc(1em + -4px), 
+    calc(100% - 0px) calc(1em + -4px);
+  background-size: 
+    4px 4px, 
+    4px 4px;
+  background-repeat: no-repeat; 
+}
+select.select:focus {
+  background-image: 
+    linear-gradient(45deg, #AEAEAE 50%, transparent 50%), 
+    linear-gradient(135deg, transparent 50%, #AEAEAE 50%);
+  background-position: 
+    calc(100% - 0px) calc(1em - 4px), 
+    calc(100% - 4px) calc(1em - 4px);
+  background-size: 
+    4px 4px, 
+    4px 4px;
+  background-repeat: no-repeat;
+  border-color: grey;
+  outline: 0;
+}
+
+.option{
+  color: #109CF1;
+}

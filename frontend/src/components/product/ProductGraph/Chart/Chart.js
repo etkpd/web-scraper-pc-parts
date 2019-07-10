@@ -5,28 +5,33 @@ import {  createContainer,
           VictoryLine, 
           VictoryGroup, 
           VictoryScatter, 
-          VictoryTooltip } from 'victory';
+          VictoryTooltip,
+          VictoryTheme } from 'victory';
+import chartStyles from './Chart.module.scss';
 
 const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 
 const Chart = ({zoomDomain, handleZoom, data}) =>{
   return (
-    <div>
+    <div className={chartStyles.previewArea}>
       <VictoryChart 
-        width={900} 
+        width={1036}
+        height={233} 
         containerComponent={
           <VictoryZoomVoronoiContainer
             zoomDimension="x"
             zoomDomain={zoomDomain}
-            onZoomDomainChange={handleZoom}
+            allowZoom={false}
           />
         }
+        theme={VictoryTheme.material}
+
       >
         <VictoryGroup
           data={data}
           x="a"
           y="b"
-          labels={(d) => `y: $${d.b} x: ${d.a}`}
+          labels={(d) => `Price: $${d.b} \n Date: ${Intl.DateTimeFormat('en-US').format(d.a)}`}
           labelComponent={
             <VictoryTooltip
               style={{ fontSize: 10 }}
@@ -36,7 +41,9 @@ const Chart = ({zoomDomain, handleZoom, data}) =>{
           <VictoryLine
             interpolation={"stepAfter"}
           />
-          <VictoryScatter/>
+          <VictoryScatter
+            size={(d, a) => {return a ? 3 : 1;}}
+          />
         </VictoryGroup>                              
         <VictoryAxis
           tickValues={[]}
@@ -47,7 +54,7 @@ const Chart = ({zoomDomain, handleZoom, data}) =>{
         />
         <VictoryAxis
           dependentAxis
-          tickFormat={(x) => `$${x}.00`}
+          tickFormat={(x) => `$${x}`}
         />
       </VictoryChart>
     </div>
