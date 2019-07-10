@@ -1,0 +1,32 @@
+.button {
+  width: 32px;
+  height: 32px;
+  background-color: #ED0000;
+  position: relative;
+  cursor: pointer;
+  margin: 0px;
+
+  & > span {
+    background-color: #ffffff;
+    display: block;
+    height: 4px;
+    position: relative;
+    position: absolute;
+    top: 50%;
+    margin-top: -2px;
+    left: 3px;
+    width: 26px;
+    display: flex;
+    justify-content: space-between;
+    &.left {
+      transform: rotate(45deg);
+      transform-origin: center;
+    }
+    &.right {
+      transform: rotate(-45deg);
+      transform-origin: center;
+     
+    }
+  }
+
+}
