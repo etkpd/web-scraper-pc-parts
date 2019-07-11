@@ -15,8 +15,8 @@ const Chart = ({zoomDomain, handleZoom, data}) =>{
   return (
     <div className={chartStyles.previewArea}>
       <VictoryChart 
-        width={1036}
-        height={233} 
+        width={1003}
+        height={250} 
         containerComponent={
           <VictoryZoomVoronoiContainer
             zoomDimension="x"

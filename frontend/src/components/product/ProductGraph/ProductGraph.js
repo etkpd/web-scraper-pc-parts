@@ -58,15 +58,18 @@
     render() {
       return (
         <div className={graphStyles.productGraph}>
-          <Header
-            productName={this.props.productName}
-          />
-          <HistoryDropDown
-            currentValue={this.state.timeSpan}
-            values={timeSpanKeys}
-            onChange={this.changeZoomDomain.bind(this)}
-            />
-          <RemoveButton/>
+          <div className={graphStyles.productHeading}>
+            <Header
+              productName={this.props.productName}
+              />
+            <HistoryDropDown
+              currentValue={this.state.timeSpan}
+              values={timeSpanKeys}
+              onChange={this.changeZoomDomain.bind(this)}
+              />
+            <RemoveButton/>
+          </div>
+          <hr className={graphStyles.style1}></hr>
           <Chart
             className={graphStyles.previewArea}
             data={this.props.data} 

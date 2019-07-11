@@ -7,4 +7,17 @@
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   margin: 0px 0px 31px 0px;
+  max-width: 1085px;
+}
+
+.productHeading{
+  display: grid;
+  grid-template-columns: 12fr 2fr 1fr;
+  height: 50px;
+  margin-bottom: 0px;
+}
+
+hr.style1{
+  border-top: 1px solid #EBEFF2;
+  margin: 0px;
 }
