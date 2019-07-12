@@ -17,6 +17,7 @@ const Chart = ({zoomDomain, handleZoom, data}) =>{
       <VictoryChart 
         width={1003}
         height={250} 
+        padding={{ top: 30, bottom: 40, left: 80, right: 40 }}
         containerComponent={
           <VictoryZoomVoronoiContainer
             zoomDimension="x"
@@ -54,7 +55,7 @@ const Chart = ({zoomDomain, handleZoom, data}) =>{
         />
         <VictoryAxis
           dependentAxis
-          tickFormat={(x) => `$${x}`}
+          tickFormat={(x) => `$${x}.00`}
         />
       </VictoryChart>
     </div>
