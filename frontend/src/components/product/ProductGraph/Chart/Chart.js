@@ -41,6 +41,7 @@ const Chart = ({zoomDomain, handleZoom, data}) =>{
         >          
           <VictoryLine
             interpolation={"stepAfter"}
+            style={{ data: {stroke: "#109CF1"}}}
           />
           <VictoryScatter
             size={(d, a) => {return a ? 3 : 1;}}
@@ -50,12 +51,18 @@ const Chart = ({zoomDomain, handleZoom, data}) =>{
           tickValues={[]}
           tickFormat={(day) => {
             let date  = new Date(day)
-            return new Intl.DateTimeFormat('en-US', {day: "2-digit", month: "short"}).format(date)
+            return new Intl.DateTimeFormat('en-US', {day: "2-digit" , month: "short"}).format(date)
+          }}
+          style={{
+            tickLabels: {fontSize: 12 , fontFamily: "Poppins-Regular" }
           }}
         />
         <VictoryAxis
           dependentAxis
           tickFormat={(x) => `$${x}.00`}
+          style={{
+            tickLabels: {fontSize: 12 , fontFamily: "Poppins-Regular" }
+          }}
         />
       </VictoryChart>
     </div>
