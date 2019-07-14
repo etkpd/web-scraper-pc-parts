@@ -1,15 +1,45 @@
-.page {
+.dashboard {
   background-color: #BFBFBF;
+  height: 100%;
+  
+}
+
+.headerSection {
+  max-width: 1085px;  
+  margin: auto;
+  display: flex;
+  padding-top: 15px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 .headerTitle{
   color: #ffffff;
   font-family:"Oswald-Regular";
-  font-size:70px;
+  font-size: 65px;
+  margin: 0px;
 }
 
-.chart{
-  max-width: 1600px;
+.signoutBtnSection{
+  
+}
+.signoutBtn{
+  height: 20px;
+  margin: auto 0px auto auto;
+}
+
+.dashboard__charts{
+  max-width: 1085px;
   margin: auto;
   padding: 0px;
+}
+
+
+.dashboard__addPartBtn{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }

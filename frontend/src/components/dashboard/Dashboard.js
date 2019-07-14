@@ -1,6 +1,8 @@
 import React from 'react';
 import dashboardStyles from './Dashboard.module.scss';
 import ProductGraph from '../product/ProductGraph/ProductGraph';
+import AddPartLinkBtn from '../buttons/AddPartLinkBtn/AddPartLinkBtn';
+import Button from '../buttons/Button';
 
 const datA=[
   { a: new Date(2018, 8, 7), b: 265 },
@@ -117,9 +119,18 @@ const datC=[
 
 const Dashboard = () => {
   return (
-    <div className={dashboardStyles.page}>
-      <h1 className={dashboardStyles.headerTitle}>PC Parts Price Logs</h1>
-      <div className={dashboardStyles.chart}>
+    <div className={dashboardStyles.dashboard}>
+      <div className={dashboardStyles.headerSection}>
+        <h1 className={dashboardStyles.headerTitle}>PC Parts Price Logs</h1>
+        <div className={dashboardStyles.signoutBtnSection}>
+          <div className={dashboardStyles.signoutBtn}>
+            <Button
+              label={'Sign Out'}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={dashboardStyles.dashboard__charts}>
         <ProductGraph
           productName={"Gigabyte - GA-B250M-DS3H Micro ATX LGA1151 Motherboard"}
           data={datA}
@@ -132,6 +143,9 @@ const Dashboard = () => {
           productName={"G.Skill - NT Series 8 GB (2 x 4 GB) DDR4-2133 Memory"}
           data={datC}
         />  
+      </div>
+      <div className={dashboardStyles.dashboard__addPartBtn}>
+        <AddPartLinkBtn/>
       </div>
     </div>
      
