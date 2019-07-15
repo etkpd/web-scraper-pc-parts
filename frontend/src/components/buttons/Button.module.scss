@@ -1,16 +1,20 @@
 .myButton {
-  background-color:#ffffff  ;
+  background-color:#ffffff;
   border-radius:6px;
   display:inline-block;
   cursor:pointer;
   padding:3px 28px;
   text-decoration:none;
   border: 2px solid #FFFFFF;
-
   color:#000000;
   font-family:"Roboto-Regular";
   font-size:19px;
   text-decoration:none;
+  
+}
+
+.secondary{
+  background-color:#FFF966;
 }
 /* .myButton:hover {
   background-color:#e42fa85d;

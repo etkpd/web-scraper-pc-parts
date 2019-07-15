@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoginModalContainer from '../../modals/LoginModalContainer/LoginModalContainer'
 import landingStyles from './Landing.module.scss'
-import Button from '../../buttons/Button';
+import * as Button from '../../buttons/Button';
 
 const Landing = ({isAuthenticated}) => {
   if (isAuthenticated) {
@@ -16,7 +16,7 @@ const Landing = ({isAuthenticated}) => {
           <h1 className={landingStyles.headerTitle}>PC Parts Price Tracker</h1>
           <div className={landingStyles.buttonContainer}>
             <LoginModalContainer>
-              <Button
+              <Button.Primary
                 label='Login'
               />
             </LoginModalContainer>

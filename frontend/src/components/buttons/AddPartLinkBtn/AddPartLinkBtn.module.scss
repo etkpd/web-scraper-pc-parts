@@ -1,9 +1,9 @@
 .btn {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border: 1px solid #cdcdcd;
   background: white;
-  border-radius: 50px;
+  border-radius: 40px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
@@ -11,23 +11,23 @@
 .horizontalBar::after {
   content: "";
   position: absolute;
-  height: 10px;
-  width: 56px;
-  top: 45px;
+  height: 8px;
+  width: 36px;
+  top: calc(50% - 4px);
   background: #109CF1;
-  right: 22px;
+  right: calc(50% - 18px);
   overflow: hidden;
   border-radius: 10px;
 }
 .verticalBar::after {
   content: "";
   position: absolute;
-  height: 56px;
-  width: 10px;
-  top: 22px;
+  height: 36px;
+  width: 8px;
+  top: calc(50% - 18px);
   background: #109CF1;
   overflow: hidden;
-  right: 45px;
+  right: calc(50% - 4px);
   border-radius: 10px; 
 }
 

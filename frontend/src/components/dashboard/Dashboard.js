@@ -2,7 +2,8 @@ import React from 'react';
 import dashboardStyles from './Dashboard.module.scss';
 import ProductGraph from '../product/ProductGraph/ProductGraph';
 import AddPartLinkBtn from '../buttons/AddPartLinkBtn/AddPartLinkBtn';
-import Button from '../buttons/Button';
+import SubmitLinkCard from '../cards/SubmitLinkCard/SubmitLinkCard';
+import * as Button from '../buttons/Button';
 
 const datA=[
   { a: new Date(2018, 8, 7), b: 265 },
@@ -124,7 +125,7 @@ const Dashboard = () => {
         <h1 className={dashboardStyles.headerTitle}>PC Parts Price Logs</h1>
         <div className={dashboardStyles.signoutBtnSection}>
           <div className={dashboardStyles.signoutBtn}>
-            <Button
+            <Button.Primary
               label={'Sign Out'}
             />
           </div>
@@ -146,6 +147,9 @@ const Dashboard = () => {
       </div>
       <div className={dashboardStyles.dashboard__addPartBtn}>
         <AddPartLinkBtn/>
+      </div>
+      <div className={dashboardStyles.dashboard__addPartBtn}>
+        <SubmitLinkCard/>
       </div>
     </div>
      
