@@ -2,9 +2,9 @@
   width: 32px;
   height: 32px;
   background-color: #ED0000;
-  position: relative;
+  position: absolute;
+  border-radius: 2px;
   cursor: pointer;
-  margin: 0px 0px auto auto;
 
   & > span {
     background-color: #ffffff;
