@@ -7,10 +7,10 @@ const TYPES = {
   SECONDARY: 'secondary'
 }
 
-const BaseButton = ({ label, onClick, buttonType}) => (
+const BaseButton = ({ type, label, onClick, buttonType}) => (
   <input
-    type='button'
-    value={label}
+    type={type}
+    defaultValue={label}
     onClick={onClick}
     className={`
       ${buttonStyles.myButton} 

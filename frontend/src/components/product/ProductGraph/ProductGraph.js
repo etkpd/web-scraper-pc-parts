@@ -30,7 +30,7 @@
     constructor() {
       super();
       this.state = {
-        zoomDomain: { x: [new Date(2019, 4, 30), new Date(2019, 6, 9)] },
+        zoomDomain: { x: [new Date(2019, 5, 16), new Date(2019, 6, 16)] },
         timeSpan: "30 days"
       };
     } 
@@ -46,9 +46,8 @@
       let newDomain = {x:[priorDate,today]}
       if (span === 200) {
         newDomain = {x:[this.props.data[0].a,today]}   
-        console.log(this.props.data[0].a)    
       }
-  
+      console.log(Intl.DateTimeFormat('en-US').format(priorDate),' - ', Intl.DateTimeFormat('en-US').format(today))          
       this.setState({
         zoomDomain: newDomain, 
         timeSpan: e.target.value
