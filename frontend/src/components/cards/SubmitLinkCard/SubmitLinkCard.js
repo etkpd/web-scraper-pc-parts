@@ -24,7 +24,9 @@ class SubmitLinkCard extends Component {
     return (
       <div className={submit_linkStyles.card}>
         <div className={submit_linkStyles.close}>
-          <RemoveBtn/>
+          <RemoveBtn
+            onClick={this.props.onClose}
+          />
         </div>
         <div className={submit_linkStyles.content}>
           <p className={submit_linkStyles.prompt}>Copy and paste product page you want to follow.</p>

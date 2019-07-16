@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import dashboardStyles from './Dashboard.module.scss';
 import ProductGraph from '../product/ProductGraph/ProductGraph';
-import AddPartLinkBtn from '../buttons/AddPartLinkBtn/AddPartLinkBtn';
-import SubmitLinkCard from '../cards/SubmitLinkCard/SubmitLinkCard';
+import LinkSubmission from '../submission/LinkSubmission/LinkSubmission';
 import * as Button from '../buttons/Button';
 
 const datA=[
@@ -76,10 +75,12 @@ const datC=[
   { a: new Date(2019, 6, 16), b:  444}
 ]
 
+class Dashboard extends Component {
+  
 
-const Dashboard = () => {
-  return (
-    <div className={dashboardStyles.dashboard}>
+  render() {
+    return (
+      <div className={dashboardStyles.dashboard}>
       <div className={dashboardStyles.headerSection}>
         <h1 className={dashboardStyles.headerTitle}>PC Parts Price Logs</h1>
         <div className={dashboardStyles.signoutBtnSection}>
@@ -105,15 +106,12 @@ const Dashboard = () => {
           data={datC}
         />  
       </div>
-      <div className={dashboardStyles.dashboard__addPartBtn}>
-        <AddPartLinkBtn/>
-      </div>
-      <div className={dashboardStyles.dashboard__addPartBtn}>
-        <SubmitLinkCard/>
+      <div>
+        <LinkSubmission/>
       </div>
     </div>
-     
-  );
-};
+    );
+  }
+}
 
 export default Dashboard;
