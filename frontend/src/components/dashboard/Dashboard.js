@@ -72,7 +72,8 @@ const datB=[
   { a: new Date(2019, 6, 16), b: 343 }
 ]
 const datC=[
-  { a: new Date(2019, 6, 16), b:  444}
+  { a: new Date(2019, 6, 16), b:  444},
+  { a: new Date(2019, 6, 17), b:  444}
 ]
 
 class Dashboard extends Component {

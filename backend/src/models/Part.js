@@ -9,32 +9,26 @@ const schema = new mongoose.Schema(
     },
     partName: {
       type: String,
-      required: true,
       unique: true
     },
     priceLog: [
       {
         date: {
           type: Number,
-          required: true
         },
-        priceByBrand: [
-          {
-            brand: {
-              type: String,
-              required: true
-            },
-            price: {
-              type: Number,
-              required: true
-            }
-          }
-        ]
+        price: {
+          type: Number,
+        } 
       }
     ]
   }
 );
 
-export default mongoose.model('Part', schema);
+schema.methods.appendRecentPrice = function appendRecentPrice(newPriceLog){
+  this.priceLog.unshift(newPriceLog);
+}
+
+module.exports = mongoose.model('Part', schema)
+
 
 

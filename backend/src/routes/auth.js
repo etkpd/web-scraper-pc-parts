@@ -27,13 +27,14 @@ router.get('/', auth,  (req, res) => {
 router.post('/',  (req, res) => {
   const { username, password } = req.body.user;
   //Users.findOne({username}).then(user => res.json({user}));
-   Users.findOne({username}).then(user => {
-    if(user && user.isValidPassword(password)){
-      res.json({ token: user.generateJWT() });
-    } else {
-      res.status(400).json({ errors: [ {msg: 'Invalid Credentials'} ] });
-    }
-  });
+  Users.findOne({username})
+    .then(user => {
+      if(user && user.isValidPassword(password)){
+        res.json({ token: user.generateJWT() });
+      } else {
+        res.status(400).json({ errors: [ {msg: 'Invalid Credentials'} ] });
+      }
+    });
 });
 
 module.exports = router;

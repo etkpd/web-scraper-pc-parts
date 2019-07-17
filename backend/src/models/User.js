@@ -106,6 +106,7 @@ schema.methods.userDetails = function userDetails() {
     username: this.username
   };
 };
+
 schema.plugin(uniqueValidator, { message: "This email is already taken" });
 
 module.exports = mongoose.model('Users', schema)
