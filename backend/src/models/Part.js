@@ -24,11 +24,11 @@ const schema = new mongoose.Schema(
 );
 
 schema.methods.appendRecentPrice = function appendRecentPrice(newPriceLog){
-  this.priceLog.unshift(newPriceLog);
+  this.priceLog.push(newPriceLog);
 }
 
 schema.methods.saveInitialValues = function saveInitialValues(initialValues){
-  this.priceLog.unshift(initialValues.priceLog);
+  this.priceLog.push(initialValues.priceLog);
   this.partName = initialValues.partName;
 }
 

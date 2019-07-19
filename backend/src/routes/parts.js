@@ -75,7 +75,7 @@ router.post('/link', auth, async (req, res) => {
   await part.saveInitialValues(initialValues);
   await part.save();
 
-  //Send price and partName as a respond to frontend
+  //Send price and partName as a response to frontend
   res.json({partName, webpage, pricelog:[{date, price}]});
 
 })
