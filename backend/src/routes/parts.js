@@ -3,7 +3,7 @@ const Part = require('../models/Part');
 const User = require('../models/User')
 const parseErrors = require('../utils/parseErrors');
 const auth = require('../middleware/auth');
-const { getPriceValue } = require('../lib/scraper');
+const { scrapInitialValues } = require('../lib/scraper');
 
 const router = express.Router();
 
@@ -65,10 +65,19 @@ router.post('/link', auth, async (req, res) => {
   await user.addPartToFavorites(part_id);
   await user.save();
 
- 
-  res.json('added to database');
+  //Scrap initial price and partName
+  const date = new Date;
+  const {price, partName} =  await scrapInitialValues(webpage);
+
+  //Save initial price and partName to database
+  const initialValues = {priceLog: {date, price}, partName };
+  const part = await Part.findById(part_id);
+  await part.saveInitialValues(initialValues);
+  await part.save();
+
+  //Send price and partName as a respond to frontend
+  res.json({partName, webpage, pricelog:[{date, price}]});
 
 })
-
 
 module.exports = router;

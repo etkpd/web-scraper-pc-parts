@@ -27,6 +27,12 @@ schema.methods.appendRecentPrice = function appendRecentPrice(newPriceLog){
   this.priceLog.unshift(newPriceLog);
 }
 
+schema.methods.saveInitialValues = function saveInitialValues(initialValues){
+  this.priceLog.unshift(initialValues.priceLog);
+  this.partName = initialValues.partName;
+}
+
+
 module.exports = mongoose.model('Part', schema)
 
 

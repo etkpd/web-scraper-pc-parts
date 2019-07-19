@@ -7,6 +7,33 @@ export async function getHTML(url) {
   return html;
 }
 
+export async function scrapInitialValues(webpage){
+  const html = await getHTML(webpage);
+  const initialValues = await getInitialValues(html);
+  return initialValues;
+}
+
+export async function getInitialValues(html) {
+  // load up cheerio
+  const prices = [];
+  const $ = cheerio.load(html);
+
+  $('td.td__finalPrice').each(function(i, element) {
+    const $element = $(element);
+    const price = $element.find('a').text();
+    prices.push(price);
+  });
+  
+  const partName = $('h1.pageTitle').text();
+
+  const priceString = prices.reduce(function(prev,curr){return prev < curr ? prev : curr });
+  const price = Number(priceString.replace(/[^0-9.-]+/g,""));
+
+  const initialValues = { price, partName }
+
+  return initialValues;
+}
+
 export async function getPrice(html) {
   // load up cheerio
   
