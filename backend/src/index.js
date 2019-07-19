@@ -2,7 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const { getPriceValue } = require('./lib/scraper');
+const { runCron } = require('./lib/scraper');
+const Part = require('./models/Part')
+import './lib/cron';
 
 
 const auth = require('./routes/auth');
@@ -24,10 +26,15 @@ app.use('/api/auth', auth);
 app.use('/api/parts', parts);
 app.use('/api/users', users);
 
+//Used for testing
 app.get(`/scrape`, async (req, res, next) => {
   console.log(`Scraping!!`);
-  const price = await getPriceValue()
-  res.json({ price });
+  Part.find({}).then((parts)=>{
+    parts.forEach((part)=>{
+      runCron(part._id)
+    })
+  })
+  res.json('scraped');
 });
 
 

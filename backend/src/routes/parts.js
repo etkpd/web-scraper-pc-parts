@@ -1,12 +1,14 @@
 const express = require('express');
 const Part = require('../models/Part');
+const User = require('../models/User')
 const parseErrors = require('../utils/parseErrors');
 const auth = require('../middleware/auth');
+const { getPriceValue } = require('../lib/scraper');
 
 const router = express.Router();
 
 // @route    POST api/parts/pricelog/:date
-// @desc     Add most recent price to Part's priceLog array. Used by web scraper. 
+// @desc     Test - Add most recent price to Part's priceLog array. Used by web scraper. 
 // @access   Public
 router.post('/pricelog/:date', (req, res) => {
   const { id, priceLog : {date , priceByBrand } } = req.body;
@@ -24,41 +26,49 @@ router.post('/pricelog/:date', (req, res) => {
 });
 
 // @route    POST api/parts
-// @desc     test
+// @desc     TEST TEST TEST
 // @access   Public
 router.post("/", (req, res) => {
   /* const { webpage, partName, priceLog } = req.body;
   res.json({priceLog});  */
 
-
-
-  const { webpage, partName, priceLog } = req.body;
-  const part = new Part({ webpage, partName, priceLog });
-  part
-    .save()
-    .then( partRecord => {
-      res.json({partRecord})
-    })
-    .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }))  
+  Part.find({}).then((parts)=>{
+    res.json(parts[1].webpage)
+  })
    
 });
 
 // @route    POST api/parts/link
-// @desc     Create a new Part document from submitted link, also add reference to Part document in user's partsList array
+// @desc     Create a new Part document from submitted link, if needed. Also, add reference to Part document in user's partsList array
 // @access   Public
-router.post('/link', auth, (req, res) => {
-  const user = req.user.id;
+router.post('/link', auth, async (req, res) => {
+  const user_id = req.user.id;
   const webpage = req.body.webpage;
-  const part = new Part({ webpage })
-   
-   part
-    .save()
-    .then( partRecord => {
-      res.json({partRecord})
-    })
-    .catch(err => res.status(400).json({ errors: parseErrors(err.errors) })) 
+  let part_id = null;
+  
+  const entry = await Part.findOne({webpage}); 
+  
+  if (entry === null){
+    //create a new Part document
+    const part = new Part({webpage});
+    await part.save();
 
-});
+    //save part_id for newly created Part
+    part_id = part._id;
+  } else {
+    //save part_id for an existing Part
+    part_id = entry._id
+  }  
+  
+  //Add Part to User's partsList
+  const user = await User.findOne({_id: user_id}); 
+  await user.addPartToFavorites(part_id);
+  await user.save();
+
+ 
+  res.json('added to database');
+
+})
 
 
 module.exports = router;

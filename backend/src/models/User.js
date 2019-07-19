@@ -109,5 +109,11 @@ schema.methods.userDetails = function userDetails() {
 
 schema.plugin(uniqueValidator, { message: "This email is already taken" });
 
+schema.methods.addPartToFavorites = function addPartToFavorites(partID){
+  this.partsList.push(partID);
+}
+
+
+
 module.exports = mongoose.model('Users', schema)
 

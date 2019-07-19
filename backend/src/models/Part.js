@@ -4,12 +4,11 @@ const schema = new mongoose.Schema(
   {
     webpage: {
       type: String,
-      required: true,
-      unique: true
+      required: true
     },
     partName: {
       type: String,
-      unique: true
+      default: ""
     },
     priceLog: [
       {

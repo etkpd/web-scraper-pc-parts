@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import Part from '../models/Part';
 
 export async function getHTML(url) {
   const { data: html } = await axios.get(url);
@@ -28,8 +29,30 @@ export async function getPrice(html) {
   return prices;
 }
 
-export async function getPriceValue() {
-  const html = await getHTML('https://pcpartpicker.com/product/FQ648d/corsair-power-supply-cp9020101na');
-  const price = await getPrice(html);
+export async function getPriceValues(webpage) {
+  const html = await getHTML(webpage);
+  const prices = await getPrice(html);
+  return prices;
+}
+
+export async function getLowestPrice(webpage){
+  const priceByBrand = await getPriceValues(webpage);
+  const price = priceByBrand.reduce(function(prev,curr){return prev.price < curr.price ? prev : curr }).price;
   return price;
+}
+
+
+export async function runCron(partID) {  
+  const date = new Date;
+  const part = await Part.findById(partID);
+
+  const priceString = await getLowestPrice(part.webpage);
+  const price = Number(priceString.replace(/[^0-9.-]+/g,""));
+
+  const newPriceLog = {date, price};
+
+  await part.appendRecentPrice(newPriceLog);
+  await part.save();
+
+  console.log('Done!');
 }
