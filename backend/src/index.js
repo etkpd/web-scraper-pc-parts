@@ -7,6 +7,8 @@ const Part = require('./models/Part')
 import './lib/cron';
 
 
+const { runDatabaseUpload } = require('./lib/uploadDummyData/uploadDummyData');
+
 const auth = require('./routes/auth');
 const parts = require('./routes/parts');
 const users = require('./routes/users');
@@ -35,6 +37,14 @@ app.get(`/scrape`, async (req, res, next) => {
     })
   })
   res.json('scraped');
+});
+
+app.get(`/upload`, async (req, res, next) => {
+  console.log(`Uploading Dummy data!!`);
+ 
+  runDatabaseUpload();
+ 
+  res.json('uploaded');
 });
 
 

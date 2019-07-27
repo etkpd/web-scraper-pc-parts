@@ -80,4 +80,9 @@ router.post('/link', auth, async (req, res) => {
 
 })
 
+
+// @route    POST api/parts/link
+// @desc     Create a new Part document from submitted link, if needed. Also, add reference to Part document in user's partsList array
+// @access   Public
+
 module.exports = router;

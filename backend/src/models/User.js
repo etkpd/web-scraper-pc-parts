@@ -33,8 +33,10 @@ const schema = new mongoose.Schema(
     },
     partsList: [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'Part'
+        partID:{
+          type: Schema.Types.ObjectId,
+          ref: 'Part'
+        }
       }
     ]
   },
@@ -110,7 +112,7 @@ schema.methods.userDetails = function userDetails() {
 schema.plugin(uniqueValidator, { message: "This email is already taken" });
 
 schema.methods.addPartToFavorites = function addPartToFavorites(partID){
-  this.partsList.push(partID);
+  this.partsList.push({ partID: partID });
 }
 
 

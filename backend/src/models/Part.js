@@ -12,11 +12,12 @@ const schema = new mongoose.Schema(
     },
     priceLog: [
       {
+        _id: false,
         date: {
-          type: Number,
+          type: Number
         },
         price: {
-          type: Number,
+          type: Number
         } 
       }
     ]

@@ -6,16 +6,25 @@ const auth = require('../middleware/auth');
 
 
 const Users = require('../models/User');
+const Part = require('../models/Part');
 
 // @route    GET api/auth
 // @desc     Test route
 // @access   Public
-router.get('/', auth,  (req, res) => {
+router.get('/', auth,  async (req, res) => {
   try {
-    Users.findById(req.user.id).then(user=> {      
-      res.json({userDetails: user.userDetails()})
-    });
-  } catch (err) {
+    const user =  await Users.findById(req.user.id);
+    const partsList = user.partsList
+    const partsIDs = [];
+    for (let {partID: ID} of partsList) {
+      partsIDs.push(ID);
+    } 
+
+    const partsListDetails = await Part.find({'_id': { $in: partsIDs}})
+
+    res.json({userDetails: user.userDetails(), partsDetails: partsListDetails});
+  } 
+  catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
@@ -26,7 +35,6 @@ router.get('/', auth,  (req, res) => {
 // @access   Public
 router.post('/',  (req, res) => {
   const { username, password } = req.body.user;
-  //Users.findOne({username}).then(user => res.json({user}));
   Users.findOne({username})
     .then(user => {
       if(user && user.isValidPassword(password)){

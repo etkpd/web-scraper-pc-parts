@@ -11,7 +11,7 @@ import chartStyles from './Chart.module.scss';
 
 const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
 
-const Chart = ({zoomDomain, handleZoom, data}) =>{
+const Chart = ({zoomDomain, data}) =>{
   return (
     <div className={chartStyles.previewArea}>
       <VictoryChart 
@@ -30,9 +30,9 @@ const Chart = ({zoomDomain, handleZoom, data}) =>{
       >
         <VictoryGroup
           data={data}
-          x="a"
-          y="b"
-          labels={(d) => `Price: $${d.b} \n Date: ${Intl.DateTimeFormat('en-US').format(d.a)}`}
+          x="date"
+          y="price"
+          labels={(d) => `Price: $${d.price} \n Date: ${Intl.DateTimeFormat('en-US').format(d.date)}`}
           labelComponent={
             <VictoryTooltip
               style={{ fontSize: 10 }}
