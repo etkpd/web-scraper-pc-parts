@@ -68,7 +68,6 @@ router.post('/link', auth, async (req, res) => {
   //Scrap initial price and partName
   const date = new Date;
   const {price, partName} =  await scrapInitialValues(webpage);
-
   //Save initial price and partName to database
   const initialValues = {priceLog: {date, price}, partName };
   const part = await Part.findById(part_id);
@@ -76,7 +75,7 @@ router.post('/link', auth, async (req, res) => {
   await part.save();
 
   //Send price and partName as a response to frontend
-  res.json({partName, webpage, pricelog:[{date, price}]});
+  res.json({newPart: part});
 
 })
 

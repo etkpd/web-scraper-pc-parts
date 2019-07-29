@@ -9,7 +9,7 @@ const Users = require('../models/User');
 const Part = require('../models/Part');
 
 // @route    GET api/auth
-// @desc     Test route
+// @desc     Once user has been authenticate by backend this route sends user's account specific information
 // @access   Public
 router.get('/', auth,  async (req, res) => {
   try {
@@ -21,6 +21,12 @@ router.get('/', auth,  async (req, res) => {
     } 
 
     const partsListDetails = await Part.find({'_id': { $in: partsIDs}})
+
+    partsListDetails.forEach((part)=>{
+      const lastIndexOfPriceHistoryArray = part.priceLog.length - 1;
+      const latestPrice = part.priceLog[lastIndexOfPriceHistoryArray].price;
+      part.priceLog.push({date: new Date, price: latestPrice});
+    })
 
     res.json({userDetails: user.userDetails(), partsDetails: partsListDetails});
   } 

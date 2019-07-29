@@ -25,12 +25,15 @@ const timeSpanDictionary ={
   "Maximum":200
 }
 
+const defaultCurrentDate = new Date()
+const defaultHistorySpan = 30
+const defaultPastDate = new Date().setDate(defaultCurrentDate.getDate()-defaultHistorySpan)
 
 class ProductGraph extends Component {
   constructor() {
     super();
     this.state = {
-      zoomDomain: { x: [new Date(2019, 5, 16), new Date(2019, 6, 16)] },
+      zoomDomain: { x: [defaultPastDate, defaultCurrentDate] },
       timeSpan: "30 days"
     };
   } 
@@ -40,7 +43,7 @@ class ProductGraph extends Component {
   }
   
   componentDidMount = () => {
-    this.getFilteredData(this.props.data)
+    //this.getFilteredData(this.props.data)
   }
 
   changeZoomDomain (e){
@@ -62,7 +65,6 @@ class ProductGraph extends Component {
     const filteredData = data.filter((point)=>{
       return point.date > this.state.zoomDomain.x[0].getTime() && point.date < this.state.zoomDomain.x[1].getTime() ? true : false
     });
-    console.log(filteredData)
     return filteredData  
   }
 

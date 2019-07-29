@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import submit_linkStyles from './SubmitLinkCard.module.scss';
 import RemoveBtn from '../../buttons/RemoveBtn/RemoveBtn';
 import * as Button from '../../buttons/Button';
+import { addPart } from '../../../actions/partActions';
+import loadingGif from '../../../assets/giphy.gif';
 
 
 class SubmitLinkCard extends Component {
@@ -17,7 +20,7 @@ class SubmitLinkCard extends Component {
 
   onLinkSubmission = e =>{
     e.preventDefault();
-    console.log(this.state.link)
+    this.props.addPart(this.state.link)
   }
 
   render() {
@@ -29,27 +32,36 @@ class SubmitLinkCard extends Component {
           />
         </div>
         <div className={submit_linkStyles.content}>
-          <p className={submit_linkStyles.prompt}>Copy and paste product page you want to follow.</p>
-          <form 
-            onSubmit={this.onLinkSubmission}
-          >
-            <input 
-              ref={(node) => { this.input = node; }}
-              className={submit_linkStyles.submitInput} 
-              placeholder="https://pcpartpicker.com/product/FQ648d" 
-              type="text" 
-              name="link"
-              onChange={this.onChange} 
-            />
-            <Button.Secondary
-              label='Submit'
-              type='submit'
-            />
-          </form>
+          {!this.props.dataLoading ?  
+            <>
+              <p className={submit_linkStyles.prompt}>Copy and paste product page you want to follow.</p>
+              <form   
+                onSubmit={this.onLinkSubmission}
+                >
+                <input 
+                  className={submit_linkStyles.submitInput} 
+                  placeholder="https://pcpartpicker.com/product/FQ648d" 
+                  type="text" 
+                  name="link"
+                  value={this.state.link}
+                  onChange={this.onChange} 
+                  />
+                <Button.Secondary
+                  label='Submit'
+                  type='submit'
+                  />
+              </form>
+            </>
+            : <img src={loadingGif} alt='loading....' height="70" width="70"></img>
+          }
         </div>
       </div>
     );
   }
 }
 
-export default SubmitLinkCard;
+const MapStateToProps = state =>({
+  dataLoading: state.data.dataLoading
+})
+
+export default connect(MapStateToProps, { addPart })(SubmitLinkCard);

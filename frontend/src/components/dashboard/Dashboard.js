@@ -299,6 +299,7 @@ class Dashboard extends Component {
   render() {
     //const data = dataPoints;
     const data = this.props.data;
+    console.log(data)
 
     let dashboardContent;
     // eslint-disable-next-line
@@ -345,7 +346,7 @@ class Dashboard extends Component {
 }
 
 const MapStateToProps = state =>({
-  data: state.data
+  data: state.data.database
 })
 
 export default connect(MapStateToProps, {})(Dashboard);
