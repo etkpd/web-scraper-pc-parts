@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import dashboardStyles from './Dashboard.module.scss';
-// eslint-disable-next-line
-import ProductGraph from '../product/ProductGraph/ProductGraph';
+import PartDetailsCard from '../cards/PartDetailsCard/PartDetailsCard';
 import LinkSubmission from '../submission/LinkSubmission/LinkSubmission';
 import * as Button from '../buttons/Button';
 
@@ -311,7 +310,7 @@ class Dashboard extends Component {
         {
           data.map((part)=>{
             return(
-              <ProductGraph
+              <PartDetailsCard
               key={part._id}
               productName={part.partName}
               data={part.priceLog}

@@ -4,8 +4,7 @@ import Header from './Header/Header';
 import HistoryDropDown from './HistoryDropDown/HistoryDropDown';
 import RemoveButton from './RemoveButton/RemoveButton';
 
-import graphStyles from './ProductGraph.module.scss';
-
+import partDetailsCardStyles from './PartDetailsCard.module.scss';
 
 const timeSpanKeys = [
   "15 days",
@@ -29,7 +28,7 @@ const defaultCurrentDate = new Date()
 const defaultHistorySpan = 30
 const defaultPastDate = new Date().setDate(defaultCurrentDate.getDate()-defaultHistorySpan)
 
-class ProductGraph extends Component {
+class partDetailsCard extends Component {
   constructor() {
     super();
     this.state = {
@@ -85,8 +84,8 @@ class ProductGraph extends Component {
 
   render() {
     return (
-      <div className={graphStyles.productGraph}>
-        <div className={graphStyles.productHeading}>
+      <div className={partDetailsCardStyles.partDetailsCard}>
+        <div className={partDetailsCardStyles.productHeading}>
           <Header
             productName={this.props.productName}
             />
@@ -97,9 +96,9 @@ class ProductGraph extends Component {
             />
           <RemoveButton/>
         </div>
-        <hr className={graphStyles.style1}></hr>
+        <hr className={partDetailsCardStyles.style1}></hr>
         <Chart
-          className={graphStyles.previewArea}
+          className={partDetailsCardStyles.previewArea}
           data={this.props.data} 
           zoomDomain={this.state.zoomDomain}
         />
@@ -108,4 +107,4 @@ class ProductGraph extends Component {
   }
 }
 
-export default ProductGraph;
+export default partDetailsCard;
