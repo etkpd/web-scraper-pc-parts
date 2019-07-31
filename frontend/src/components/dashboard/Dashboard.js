@@ -314,6 +314,7 @@ class Dashboard extends Component {
               key={part._id}
               productName={part.partName}
               data={part.priceLog}
+              partID={part._id}
               />
               )
             })

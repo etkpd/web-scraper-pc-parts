@@ -60,6 +60,10 @@ class partDetailsCard extends Component {
     })
   }
 
+  removePart = () => {
+    console.log(this.props.partID)
+  }
+
   getFilteredData = (data) => {      
     const filteredData = data.filter((point)=>{
       return point.date > this.state.zoomDomain.x[0].getTime() && point.date < this.state.zoomDomain.x[1].getTime() ? true : false
@@ -94,7 +98,9 @@ class partDetailsCard extends Component {
             values={timeSpanKeys}
             onChange={this.changeZoomDomain.bind(this)}
             />
-          <RemoveButton/>
+          <RemoveButton
+            onClick={this.removePart}
+          />
         </div>
         <hr className={partDetailsCardStyles.style1}></hr>
         <Chart

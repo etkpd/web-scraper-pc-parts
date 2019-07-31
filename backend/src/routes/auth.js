@@ -20,7 +20,7 @@ router.get('/', auth,  async (req, res) => {
       partsIDs.push(ID);
     } 
 
-    const partsListDetails = await Part.find({'_id': { $in: partsIDs}})
+    const partsListDetails = await Part.find({'_id': { $in: partsIDs}}, '-numberOfReferences')
 
     partsListDetails.forEach((part)=>{
       const lastIndexOfPriceHistoryArray = part.priceLog.length - 1;

@@ -20,7 +20,11 @@ const schema = new mongoose.Schema(
           type: Number
         } 
       }
-    ]
+    ],
+    numberOfReferences: {
+      type: Number,
+      default: 1
+    }
   }
 );
 
