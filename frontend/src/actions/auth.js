@@ -3,8 +3,9 @@ import {
   LOGIN_LOADING,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  // eslint-disable-next-line
-  ADD_DATA
+  USER_LOGOUT,
+  ADD_DATA,
+  CLEAR_DATA
 } from "./types";
 import { setAlert } from './alert';
 import api from "../api";
@@ -62,4 +63,9 @@ export const login = (username, password) => async dispatch => {
   } 
 };
 
-
+export const logout = () => dispatch =>{
+  localStorage.removeItem('token');
+  setAuthToken(false);
+  dispatch({type: CLEAR_DATA });
+  dispatch({type: USER_LOGOUT });
+}

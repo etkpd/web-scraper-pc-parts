@@ -1,6 +1,6 @@
 import { 
   ADD_DATA, 
-  REMOVE_DATA,
+  CLEAR_DATA,
   SET_LOADING,
   CREATE_PART,
   DELETE_PART  
@@ -20,6 +20,8 @@ export default function(state = initialState, action) {
         ...state,
         database: payload.partsDetails
       };
+    case CLEAR_DATA:
+      return{};
     case SET_LOADING:
       return {
         ...state,
@@ -36,7 +38,6 @@ export default function(state = initialState, action) {
         ...state,
         database: state.database.filter(part => part._id !== payload)
       };
-    case REMOVE_DATA:
     default:
       return state;
   }

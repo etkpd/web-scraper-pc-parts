@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import dashboardStyles from './Dashboard.module.scss';
 import PartDetailsCard from '../cards/PartDetailsCard/PartDetailsCard';
 import LinkSubmission from '../submission/LinkSubmission/LinkSubmission';
+import { logout } from '../../actions/auth';
 import * as Button from '../buttons/Button';
 
 // eslint-disable-next-line
@@ -332,6 +333,7 @@ class Dashboard extends Component {
             <Button.Primary
               type='button'
               label='Sign Out'
+              onClick={() => this.props.logout()}
             />
           </div>
         </div>
@@ -349,4 +351,4 @@ const MapStateToProps = state =>({
   data: state.data.database
 })
 
-export default connect(MapStateToProps, {})(Dashboard);
+export default connect(MapStateToProps, { logout })(Dashboard);
