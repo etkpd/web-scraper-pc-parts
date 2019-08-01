@@ -9,6 +9,8 @@ export default {
   },
   part: {
     add_part: (webpage) =>
-      axios.post("http://localhost:2093/api/parts/link", { webpage }).then(res => res)
+      axios.post("http://localhost:2093/api/parts/link", { webpage }).then(res => res),
+    delete_part: (partID) =>
+      axios.delete(`http://localhost:2093/api/parts/partsList/${partID}`).then(res => res) 
   }
 };

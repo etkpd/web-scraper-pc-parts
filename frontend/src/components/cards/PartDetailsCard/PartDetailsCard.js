@@ -3,6 +3,7 @@ import Chart from './Chart/Chart';
 import Header from './Header/Header';
 import HistoryDropDown from './HistoryDropDown/HistoryDropDown';
 import RemoveButton from './RemoveButton/RemoveButton';
+import DeleteConfirmationModalContainer from '../../modals/DeleteConfirmationModalContainer/DeleteConfirmationModalContainer';
 
 import partDetailsCardStyles from './PartDetailsCard.module.scss';
 
@@ -60,9 +61,6 @@ class partDetailsCard extends Component {
     })
   }
 
-  removePart = () => {
-    console.log(this.props.partID)
-  }
 
   getFilteredData = (data) => {      
     const filteredData = data.filter((point)=>{
@@ -98,9 +96,12 @@ class partDetailsCard extends Component {
             values={timeSpanKeys}
             onChange={this.changeZoomDomain.bind(this)}
             />
-          <RemoveButton
-            onClick={this.removePart}
-          />
+          <DeleteConfirmationModalContainer
+            productName={this.props.productName}
+            partID={this.props.partID}
+          >
+            <RemoveButton/>
+          </DeleteConfirmationModalContainer>
         </div>
         <hr className={partDetailsCardStyles.style1}></hr>
         <Chart

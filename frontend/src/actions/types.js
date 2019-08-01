@@ -8,5 +8,6 @@ export const ADD_DATA = 'ADD_DATA';
 export const REMOVE_DATA = 'REMOVE_DATA';
 
 export const ADD_PART = 'ADD_PART';
-export const SET_LOADING = 'SET_LOADING';
 export const CREATE_PART = 'CREATE_PART';
+export const DELETE_PART = 'DELETE_PART';
+export const SET_LOADING = 'SET_LOADING';

@@ -2,7 +2,8 @@ import {
   ADD_DATA, 
   REMOVE_DATA,
   SET_LOADING,
-  CREATE_PART 
+  CREATE_PART,
+  DELETE_PART  
 } from '../actions/types';
 
 const initialState = {
@@ -23,13 +24,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         dataLoading: true
-      }
+      };
     case CREATE_PART:
       return {
         ...state,
         database: [...state.database, payload.newPart],
         dataLoading: false
-      }
+      };
+    case DELETE_PART:
+      return {
+        ...state,
+        database: state.database.filter(part => part._id !== payload)
+      };
     case REMOVE_DATA:
     default:
       return state;

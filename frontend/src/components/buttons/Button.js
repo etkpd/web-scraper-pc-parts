@@ -4,7 +4,8 @@ import buttonStyles from './Button.module.scss'
 
 const TYPES = {
   PRIMARY: 'primary',
-  SECONDARY: 'secondary'
+  SECONDARY: 'secondary',
+  SIGNIN: 'signin'
 }
 
 const BaseButton = ({ type, label, onClick, buttonType}) => (
@@ -25,6 +26,10 @@ export const Primary = props => (
 
 export const Secondary = props => (
   <BaseButton { ...props } buttonType={TYPES.SECONDARY} />
+);
+
+export const SignIn = props => (
+  <BaseButton { ...props } buttonType={TYPES.SIGNIN} />
 );
 
 

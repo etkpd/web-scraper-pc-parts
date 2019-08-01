@@ -16,7 +16,7 @@ const Landing = ({isAuthenticated}) => {
           <h1 className={landingStyles.headerTitle}>PC Parts Price Tracker</h1>
           <div className={landingStyles.buttonContainer}>
             <LoginModalContainer>
-              <Button.Primary
+              <Button.SignIn
                 label='Login'
               />
             </LoginModalContainer>
