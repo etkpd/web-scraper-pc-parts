@@ -12,3 +12,4 @@ export const ADD_PART = 'ADD_PART';
 export const CREATE_PART = 'CREATE_PART';
 export const DELETE_PART = 'DELETE_PART';
 export const SET_LOADING = 'SET_LOADING';
+export const CLEAR_LOADING = 'CLEAR_LOADING';

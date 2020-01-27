@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import uniqueValidator from "mongoose-unique-validator";
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+const uniqueValidator = require("mongoose-unique-validator")
 const Schema = mongoose.Schema;
 
 const schema = new mongoose.Schema(
@@ -118,4 +118,3 @@ schema.methods.addPartToFavorites = function addPartToFavorites(partID){
 
 
 module.exports = mongoose.model('Users', schema)
-

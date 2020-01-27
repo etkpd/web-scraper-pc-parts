@@ -42,6 +42,7 @@ router.post("/", (req, res) => {
 // @desc     Create a new Part document from submitted link, if needed. Also, add reference to Part document in user's partsList array
 // @access   Private
 router.post('/link', auth, async (req, res) => {
+  try{
   const user_id = req.user.id;
   const webpage = req.body.webpage;
   let part_id = null;
@@ -49,18 +50,17 @@ router.post('/link', auth, async (req, res) => {
   const entry = await Part.findOne({webpage}); 
   
   if (entry === null){
-    //create a new Part document
-    const part = new Part({webpage});
-    //Scrap initial price and partName
-    const date = new Date;
-    const {price, partName} =  await scrapInitialValues(webpage);
-    //Save initial price and partName to database
-    const initialValues = {priceLog: {date, price}, partName };
-    await part.saveInitialValues(initialValues);
-    await part.save();
-    
-    //save part_id for newly created Part
-    part_id = part._id;
+      //create a new Part document
+      const part = new Part({webpage});
+      //Scrap initial price and partName
+      const date = new Date;
+      const {price, partName}=  await scrapInitialValues(webpage);
+      //Save initial price and partName to database
+      const initialValues = {priceLog: {date, price}, partName };
+      await part.saveInitialValues(initialValues);
+      await part.save();
+      //save part_id for newly created Part
+      part_id = part._id;
   } else {
     //save part_id for an existing Part
     part_id = entry._id
@@ -77,6 +77,10 @@ router.post('/link', auth, async (req, res) => {
   
   //Send price and partName as a response to frontend
   res.json({newPart: part});
+
+ } catch (error){
+    res.status(422).json({ errors: [ {msg: 'Link is Invalid'} ] });
+ }
 
 })
 

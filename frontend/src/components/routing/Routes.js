@@ -6,7 +6,7 @@ import PrivateRoute from '../routing/PrivateRoute';
 
 const Routes = () => {
   return (
-    <section className='container'>
+    <section className='applicationDashboard'>
       <Switch>
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <Route component={NotFound} />

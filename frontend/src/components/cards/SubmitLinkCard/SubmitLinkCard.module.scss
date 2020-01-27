@@ -30,8 +30,31 @@
   .submitInput{
     font-size: 13px;
     width: 572px;
-    margin: 0px 0px 17px 0px;
+    margin: 0px 0px 0px 0px;
+    height: 100%;
   }
 
 }
 
+.form{
+  display: flex;
+}
+
+.alertMessage{
+  font-size: 14px; 
+  margin:0;
+  position: absolute;
+}
+
+.input{
+  position: relative;
+  color: red;
+}
+
+@media only screen and (min-width: 768px){
+
+}
+
+@media only screen and (min-width: 1000px){
+  
+}

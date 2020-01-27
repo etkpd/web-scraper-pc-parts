@@ -1,5 +1,6 @@
 import { 
   SET_LOADING,
+  CLEAR_LOADING,
   CREATE_PART,
   DELETE_PART
 } from "./types";
@@ -21,6 +22,10 @@ export const addPart = (webpage) => async dispatch => {
     });
   } catch (err) {
     const errors = err.response.data.errors;
+    dispatch({
+      type: CLEAR_LOADING
+    });
+    
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }

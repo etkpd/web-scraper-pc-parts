@@ -9,10 +9,14 @@ import loadingGif from '../../../assets/giphy.gif';
 
 class SubmitLinkCard extends Component {
   state = {
-    link:''
+    link: '',
+    alert: false
   }
 
   onChange = e =>{
+    if(this.state.alert){
+      this.setState({alert:false})
+    }
     this.setState({ 
       [e.target.name]: e.target.value 
     });
@@ -20,7 +24,17 @@ class SubmitLinkCard extends Component {
 
   onLinkSubmission = e =>{
     e.preventDefault();
-    this.props.addPart(this.state.link)
+    let re = new RegExp('https://pcpartpicker.com/product/')
+    let link = re.exec(this.state.link)
+
+    if(link){
+      this.props.addPart(this.state.link)
+      this.setState({
+        link: ''
+      })
+    } else{
+      this.setState({alert: true})
+    }
   }
 
   render() {
@@ -36,16 +50,20 @@ class SubmitLinkCard extends Component {
             <>
               <p className={submit_linkStyles.prompt}>Copy and paste product page you want to follow.</p>
               <form   
+                className={submit_linkStyles.form}
                 onSubmit={this.onLinkSubmission}
                 >
-                <input 
-                  className={submit_linkStyles.submitInput} 
-                  placeholder="https://pcpartpicker.com/product/FQ648d" 
-                  type="text" 
-                  name="link"
-                  value={this.state.link}
-                  onChange={this.onChange} 
-                  />
+                <div className={submit_linkStyles.input}>
+                  <input 
+                    className={submit_linkStyles.submitInput} 
+                    placeholder="https://pcpartpicker.com/product/FQ648d" 
+                    type="text" 
+                    name="link"
+                    value={this.state.link}
+                    onChange={this.onChange} 
+                    />
+                  {(this.state.alert || this.props.invalidLinkAlert) && <p className={submit_linkStyles.alertMessage}>Invalid Link</p>}
+                </div>
                 <Button.Secondary
                   label='Submit'
                   type='submit'
@@ -61,7 +79,8 @@ class SubmitLinkCard extends Component {
 }
 
 const MapStateToProps = state =>({
-  dataLoading: state.data.dataLoading
+  dataLoading: state.data.dataLoading,
+  invalidLinkAlert: state.alert.some(alert => alert.msg === "Link is Invalid")
 })
 
 export default connect(MapStateToProps, { addPart })(SubmitLinkCard);

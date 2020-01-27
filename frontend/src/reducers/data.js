@@ -2,6 +2,7 @@ import {
   ADD_DATA, 
   CLEAR_DATA,
   SET_LOADING,
+  CLEAR_LOADING,
   CREATE_PART,
   DELETE_PART  
 } from '../actions/types';
@@ -26,6 +27,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         dataLoading: true
+      };
+    case CLEAR_LOADING:
+      return {
+        ...state,
+        dataLoading: false
       };
     case CREATE_PART:
       return {

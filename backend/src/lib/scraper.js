@@ -3,14 +3,22 @@ import cheerio from 'cheerio';
 import Part from '../models/Part';
 
 export async function getHTML(url) {
-  const { data: html } = await axios.get(url);
-  return html;
+  try{
+    const { data: html } = await axios.get(url);
+    return html
+  } catch (error) {
+    throw error
+  }
 }
 
 export async function scrapInitialValues(webpage){
-  const html = await getHTML(webpage);
-  const initialValues = await getInitialValues(html);
-  return initialValues;
+  try{
+    const html = await getHTML(webpage);
+    const initialValues = await getInitialValues(html);
+    return initialValues;
+  } catch (error) {
+    throw error
+  }
 }
 
 export async function getInitialValues(html) {
@@ -64,7 +72,13 @@ export async function getPriceValues(webpage) {
 
 export async function getLowestPrice(webpage){
   const priceByBrand = await getPriceValues(webpage);
-  const price = priceByBrand.reduce(function(prev,curr){return prev.price < curr.price ? prev : curr }).price;
+  let price
+
+  if(priceByBrand.length>0){
+    price = priceByBrand.reduce(function(prev,curr){return prev.price < curr.price ? prev : curr }).price;
+  } else {
+    price = null
+  }
   return price;
 }
 
@@ -74,12 +88,12 @@ export async function runCron(partID) {
   const part = await Part.findById(partID);
 
   const priceString = await getLowestPrice(part.webpage);
-  const price = Number(priceString.replace(/[^0-9.-]+/g,""));
-
-  const newPriceLog = {date, price};
-
-  await part.appendRecentPrice(newPriceLog);
-  await part.save();
-
+  if(priceString !== null){
+    const price = Number(priceString.replace(/[^0-9.-]+/g,""));
+    const newPriceLog = {date, price};
+    await part.appendRecentPrice(newPriceLog);
+    await part.save();
+  }
+  
   console.log('Done!');
 }

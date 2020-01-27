@@ -121,6 +121,8 @@ class LoginModal extends React.Component {
                   />
                 <button type="submit" className={styles.btn}>Login</button>
               </form>
+              <p className={styles.note}>username: a</p>
+              <p className={styles.note}>password: a</p>
               </>
               :<img src={loadingGif} alt='loading....' height="70" width="70"></img>
             }

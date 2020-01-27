@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema(
   {
@@ -39,6 +39,3 @@ schema.methods.saveInitialValues = function saveInitialValues(initialValues){
 
 
 module.exports = mongoose.model('Part', schema)
-
-
-

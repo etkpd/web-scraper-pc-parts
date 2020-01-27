@@ -9,9 +9,9 @@ import './lib/cron';
 
 const { runDatabaseUpload } = require('./lib/uploadDummyData/uploadDummyData');
 
-const auth = require('./routes/auth');
-const parts = require('./routes/parts');
-const users = require('./routes/users');
+const auth = require('./api/auth');
+const parts = require('./api/parts');
+const users = require('./api/users');
 
 dotenv.config();
 
